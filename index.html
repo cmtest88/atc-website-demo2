@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archi+Tech Collections - Your Hub for Digital Goods</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e2e8f0;
+        }
+        .hero-bg {
+            background-color: #111;
+            background-image:
+                radial-gradient(at 27% 37%, hsla(215, 98%, 42%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 97% 21%, hsla(125, 98%, 42%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 52% 99%, hsla(355, 98%, 42%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 10% 29%, hsla(256, 96%, 41%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 0.1) 0px, transparent 50%);
+            position: relative;
+            overflow: hidden;
+        }
+        .card-glow {
+            transition: all 0.3s ease-in-out;
+            border: 1px solid #2d3748;
+        }
+        .card-glow:hover {
+            border-color: #4a5568;
+            box-shadow: 0 0 25px rgba(100, 181, 246, 0.3);
+            transform: translateY(-8px) scale(1.02);
+        }
+        .btn-primary {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-primary:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #4299e1;
+            border-radius: 0.5rem;
+            z-index: -2;
+        }
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: #2b6cb0;
+            transition: all 0.3s;
+            border-radius: 0.5rem;
+            z-index: -1;
+        }
+        .btn-primary:hover:before {
+            width: 100%;
+        }
+        .category-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            background-color: #1a202c;
+        }
+        .category-card svg {
+            transition: transform 0.3s ease;
+        }
+        .category-card:hover svg {
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-section {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        .testimonial-card {
+            background: #1a202c;
+            border: 1px solid #2d3748;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        /* Tab styles */
+        .tab-button.active {
+            background-color: #4299e1;
+            color: white;
+        }
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.active {
+            display: block; 
+        }
+        #software-panel.active, #models-category-grid.active, #model-products-grid.active, #search-results-grid.active {
+            display: grid;
+        }
+         #model-products-view {
+            display: none;
+        }
+
+
+        /* Search Bar Animation */
+        #search-input {
+            transition: all 0.3s ease-in-out;
+        }
+        #search-input:focus {
+            padding-left: 2rem;
+            background-color: #1a202c;
+        }
+
+        #search-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        #search-button:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        /* Interactive blob in hero */
+        .blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(180deg, rgba(76, 88, 222, 0.3) 0%, rgba(132, 57, 196, 0.3) 100%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: blob-move 20s infinite ease-in-out;
+            z-index: 0;
+            opacity: 0.5;
+        }
+        @keyframes blob-move {
+            0% { transform: translate(-100px, -100px) scale(1); }
+            25% { transform: translate(150px, 50px) scale(1.2); }
+            50% { transform: translate(50px, -150px) scale(0.8); }
+            75% { transform: translate(-150px, 150px) scale(1.1); }
+            100% { transform: translate(-100px, -100px) scale(1); }
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-content {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .modal-tab-button {
+            transition: all 0.2s ease;
+        }
+        .modal-tab-button.active {
+            color: #4299e1;
+            border-color: #4299e1;
+        }
+        .payment-tab-button {
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .payment-tab-button.active {
+            color: #4299e1;
+            border-color: #4299e1;
+        }
+        .ewallet-option {
+            border: 2px solid #4a5568;
+            transition: all 0.2s ease;
+        }
+        .ewallet-option.selected {
+            border-color: #4299e1;
+            box-shadow: 0 0 15px rgba(66, 153, 225, 0.4);
+        }
+        .modal-tab-panel, .payment-tab-panel {
+            display: none;
+        }
+        .modal-tab-panel.active, .payment-tab-panel.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Image Slider Styles */
+        .slider-container {
+            aspect-ratio: 1.5 / 1;
+        }
+        .slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+            border-radius: 0.5rem;
+        }
+        .slider-image.active {
+            opacity: 1;
+        }
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+            z-index: 10;
+        }
+        .slider-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .slider-arrow.left {
+            left: 0.5rem;
+        }
+        .slider-arrow.right {
+            right: 0.5rem;
+        }
+
+        /* Cart Styles */
+        #cart-item-count {
+            position: absolute;
+            top: -0.5rem;
+            right: -0.5rem;
+            background-color: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+        #cart-item-count.updated {
+            transform: scale(1.3);
+        }
+        #modal-sticky-footer {
+            transition: transform 0.3s ease-in-out;
+        }
+        #modal-sticky-footer.visible {
+            transform: translateY(0);
+        }
+
+        /* Chatbot Styles */
+        #chat-button {
+            transition: transform 0.3s ease;
+        }
+        #chat-button:hover {
+            transform: scale(1.1);
+        }
+        #chat-window {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .chat-message {
+            max-width: 80%;
+        }
+        #chat-button.open {
+            transform: rotate(180deg);
+            background-color: #ef4444; /* Red for close */
+        }
+        #chat-button svg {
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+            position: absolute;
+        }
+        #chat-button .chat-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+        #chat-button .close-icon {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        #chat-button.open .chat-icon {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        #chat-button.open .close-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="fixed w-full backdrop-blur-md bg-black/30 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">
+                Archi+Tech <span class="text-blue-400">Collections</span>
+            </a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#products" class="nav-link text-slate-300 hover:text-blue-400 transition-colors duration-300">Products</a>
+                <a href="#testimonials" class="nav-link text-slate-300 hover:text-blue-400 transition-colors duration-300">Testimonials</a>
+                <a href="#contact" class="nav-link text-slate-300 hover:text-blue-400 transition-colors duration-300">Contact</a>
+                <button id="cart-button" class="relative text-slate-300 hover:text-blue-400 transition-colors duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    <span id="cart-item-count" class="hidden">0</span>
+                </button>
+            </nav>
+            <div class="flex items-center md:hidden">
+                <button id="cart-button-mobile" class="relative text-white mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    <span id="cart-item-count-mobile" class="hidden">0</span>
+                </button>
+                <button id="mobile-menu-button" class="text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
+            <a href="#products" class="nav-link block text-slate-300 hover:text-blue-400">Products</a>
+            <a href="#testimonials" class="nav-link block text-slate-300 hover:text-blue-400">Testimonials</a>
+            <a href="#contact" class="nav-link block text-slate-300 hover:text-blue-400">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-bg pt-32 pb-20 md:pt-48 md:pb-32 text-center relative">
+            <div class="blob"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4">
+                    Unlock Your Creative Potential
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-8">
+                    Discover a universe of high-quality digital assets. From cutting-edge software to stunning 3D models and insightful ebooks, find everything you need to bring your ideas to life.
+                </p>
+                <!-- Search Bar -->
+                <div class="mt-8 mb-12 max-w-2xl mx-auto">
+                    <div class="relative group">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </span>
+                        <input type="text" id="search-input" placeholder="Search for software, models, etc..." class="w-full bg-slate-800/50 border border-slate-700 text-white rounded-full py-4 pl-12 pr-16 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out text-lg" autocomplete="off">
+                        <button id="search-button" aria-label="Search" class="absolute inset-y-0 right-0 flex items-center justify-center bg-blue-500 text-white rounded-full w-12 h-12 m-2 hover:bg-blue-600 transition-all duration-300">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                        <!-- Search Suggestions -->
+                        <div id="search-suggestions" class="absolute top-full left-0 right-0 mt-2 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-20 hidden overflow-hidden">
+                            <!-- Suggestion items will be injected here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center space-x-4">
+                    <a href="#products" class="btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg">
+                        Explore Products
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section id="products" class="py-20 bg-black">
+            <div class="container mx-auto px-6">
+                <div id="products-header" class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Explore Our Collections</h2>
+                    <p class="text-slate-400 mt-2">Find the perfect assets tailored to your needs.</p>
+                </div>
+                
+                <div id="search-header" class="text-center mb-12 hidden">
+                    <h2 id="search-title" class="text-3xl md:text-4xl font-bold text-white">Search Results</h2>
+                     <button id="back-to-products-btn" class="mt-4 inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                        Back to All Products
+                    </button>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div id="tab-navigation" class="flex justify-center mb-10 bg-slate-800/50 rounded-lg p-2 max-w-xl mx-auto">
+                    <button data-tab="software" class="tab-button active w-full text-center py-3 px-4 rounded-lg font-semibold transition-colors duration-300">Software</button>
+                    <button data-tab="models" class="tab-button w-full text-center py-3 px-4 rounded-lg font-semibold text-slate-300 transition-colors duration-300">3D Models</button>
+                    <button data-tab="video-courses" class="tab-button w-full text-center py-3 px-4 rounded-lg font-semibold text-slate-300 transition-colors duration-300">Video Courses</button>
+                    <button data-tab="packages" class="tab-button w-full text-center py-3 px-4 rounded-lg font-semibold text-slate-300 transition-colors duration-300">Packages</button>
+                </div>
+
+                <!-- Tab & Search Panels -->
+                <div id="panels-container">
+                    <!-- Software Panel -->
+                    <div id="software-panel" class="tab-panel active grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Software cards are populated by JS -->
+                    </div>
+                    <!-- 3D Models Panel -->
+                    <div id="models-panel" class="tab-panel">
+                        <div id="models-category-view">
+                            <div id="models-category-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                <!-- Model Categories are populated by JS -->
+                            </div>
+                        </div>
+                        <div id="model-products-view" class="hidden">
+                            <button id="back-to-categories-btn" class="mb-6 inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                                Back to Categories
+                            </button>
+                            <h2 id="model-products-title" class="text-3xl font-bold text-white mb-8"></h2>
+                            <div id="model-products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                <!-- Specific model products are populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Video Courses Panel -->
+                    <div id="video-courses-panel" class="tab-panel">
+                         <div class="text-center col-span-full py-16">
+                            <h3 class="text-2xl text-white">Video Courses Launching Soon!</h3>
+                            <p class="text-slate-400">Interactive, in-depth courses from industry professionals.</p>
+                        </div>
+                    </div>
+                    <!-- Packages Panel -->
+                    <div id="packages-panel" class="tab-panel">
+                         <div class="text-center col-span-full py-16">
+                            <h3 class="text-2xl text-white">Asset Packages Launching Soon!</h3>
+                            <p class="text-slate-400">Get bundled software, models, and courses at a great price.</p>
+                        </div>
+                    </div>
+                    <!-- Search Results Panel -->
+                    <div id="search-results-panel" class="hidden">
+                        <div id="search-results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Search results are populated by JS -->
+                        </div>
+                         <div id="no-results-message" class="text-center col-span-full py-16 hidden">
+                            <h3 class="text-2xl text-white">No Products Found</h3>
+                            <p class="text-slate-400">Try a different search term.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-slate-900/50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Loved by Creators Worldwide</h2>
+                    <p class="text-slate-400 mt-2">Don't just take our word for it.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card rounded-lg p-6">
+                        <p class="text-slate-300 mb-4">"The quality of assets on Digital Emporium is unparalleled. I found the perfect 3D model for my game in minutes!"</p>
+                        <div class="flex items-center">
+                            <img src="https://i.pravatar.cc/40?u=a042581f4e29026704d" alt="Alex Johnson" class="w-10 h-10 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold text-white">Alex Johnson</h4>
+                                <p class="text-sm text-slate-400">Game Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card rounded-lg p-6">
+                        <p class="text-slate-300 mb-4">"As a designer, the UI kits here are a lifesaver. They're modern, easy to use, and have saved me countless hours of work."</p>
+                        <div class="flex items-center">
+                            <img src="https://i.pravatar.cc/40?u=a042581f4e29026704e" alt="Samantha Bee" class="w-10 h-10 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold text-white">Samantha Bee</h4>
+                                <p class="text-sm text-slate-400">UI/UX Designer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card rounded-lg p-6">
+                        <p class="text-slate-300 mb-4">"I bought a video course on animation, and it was fantastic. The instructor was clear, and the content was top-notch."</p>
+                        <div class="flex items-center">
+                            <img src="https://i.pravatar.cc/40?u=a042581f4e29026704f" alt="Michael Chen" class="w-10 h-10 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold text-white">Michael Chen</h4>
+                                <p class="text-sm text-slate-400">Motion Graphics Artist</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-slate-900 text-slate-400">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">Archi+Tech <span class="text-blue-400">Collections</span></h3>
+                    <p>Your one-stop shop for premium digital goods.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Products</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:text-blue-400">Software</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-blue-400">3D Models</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-blue-400">Video Courses</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-blue-400">eBooks</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Company</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:text-blue-400">About Us</a></li>
+                        <li class="mb-2"><a href="#" id="contact-support-btn-footer" class="hover:text-blue-400 cursor-pointer">Contact Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-blue-400"><!-- SVG for Twitter --></a>
+                        <a href="#" class="hover:text-blue-400"><!-- SVG for Instagram --></a>
+                        <a href="#" class="hover:text-blue-400"><!-- SVG for Dribbble --></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-8 pt-6 text-center text-sm">
+                <p>&copy; 2024 Archi+Tech Collections. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="modal-overlay fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4 hidden opacity-0">
+        <div id="modal-content" class="modal-content bg-slate-900 w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-xl border border-slate-700 shadow-2xl relative opacity-0 transform scale-95">
+            <!-- Close Button -->
+            <button id="modal-close-btn" class="sticky top-4 right-4 float-right text-slate-400 hover:text-white transition-colors z-10 text-3xl leading-none font-bold p-2">&times;</button>
+    
+            <!-- Content -->
+            <div id="modal-scroll-content" class="p-8 md:p-12">
+                <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                    <!-- Left Side (Image) -->
+                    <div id="modal-image-container" class="slider-container md:col-span-2 relative flex items-center justify-center w-full rounded-lg shadow-lg overflow-hidden bg-slate-800">
+                        <!-- Images and arrows will be injected by JS here -->
+                    </div>
+    
+                    <!-- Right Side (Details) -->
+                    <div class="flex flex-col">
+                        <h2 id="modal-title" class="text-3xl font-bold text-white"></h2>
+                        <p id="modal-subtitle" class="text-slate-400 mt-2"></p>
+    
+                        <!-- Version Selector (for software) -->
+                        <div id="modal-version-container" class="mt-6">
+                            <label for="modal-version-select" class="block text-sm font-medium text-slate-300 mb-1">Select Version</label>
+                            <select id="modal-version-select" class="w-full bg-slate-800 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <!-- Options will be populated by JS -->
+                            </select>
+                        </div>
+    
+                        <!-- Price & Add to Cart Button -->
+                        <div class="mt-6 flex justify-between items-center gap-4">
+                            <span id="modal-price" class="text-4xl font-bold text-blue-400"></span>
+                            <div id="add-to-cart-container">
+                                <button id="add-to-cart-btn" class="btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg flex-shrink-0">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Tabs for Specs/Features -->
+                <div class="mt-12">
+                    <!-- Tab Headers -->
+                    <div class="border-b border-slate-700">
+                        <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                            <button data-modal-tab="description" class="modal-tab-button active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-base">Description</button>
+                            
+                            <!-- Software-specific Tab -->
+                            <button data-modal-tab="requirements" id="requirements-tab" class="modal-tab-button text-slate-400 hover:text-white whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-base">Requirements</button>
+                            <button data-modal-tab="installation" id="installation-tab" class="modal-tab-button text-slate-400 hover:text-white whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-base">Installation Tutorial</button>
+
+                            <!-- Model-specific Tab -->
+                            <button data-modal-tab="compatibility" id="compatibility-tab" class="modal-tab-button text-slate-400 hover:text-white whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-base hidden">Compatibility</button>
+                            <button data-modal-tab="inclusions" id="inclusions-tab" class="modal-tab-button text-slate-400 hover:text-white whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-base hidden">Inclusions</button>
+
+                        </nav>
+                    </div>
+    
+                    <!-- Tab Content Panels -->
+                    <div class="mt-6">
+                        <div id="modal-description-panel" class="modal-tab-panel active text-slate-300 space-y-4"></div>
+                        
+                        <!-- Software-specific Panel -->
+                        <div id="modal-requirements-panel" class="modal-tab-panel text-slate-300"></div>
+                        <div id="modal-installation-panel" class="modal-tab-panel text-slate-300 space-y-4"></div>
+
+                        <!-- Model-specific Panel -->
+                        <div id="modal-compatibility-panel" class="modal-tab-panel text-slate-300"></div>
+                        <div id="modal-inclusions-panel" class="modal-tab-panel text-slate-300"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sticky Footer -->
+            <div id="modal-sticky-footer" class="sticky bottom-0 bg-slate-800/80 backdrop-blur-sm p-4 border-t border-slate-700 transform translate-y-full z-20">
+                <div class="max-w-5xl mx-auto flex justify-between items-center">
+                    <div>
+                         <h4 id="sticky-footer-title" class="text-white font-bold text-lg"></h4>
+                         <span id="sticky-footer-price" class="text-2xl font-bold text-blue-400"></span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                         <button id="sticky-footer-view-cart-btn" class="relative bg-slate-700 text-white font-semibold py-3 px-5 rounded-lg hover:bg-slate-600 transition-colors">
+                             <span>View Cart</span>
+                             <span id="sticky-footer-cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center border-2 border-slate-800 hidden">0</span>
+                         </button>
+                         <div id="sticky-footer-add-to-cart-container">
+                            <button id="sticky-footer-add-to-cart-btn" class="btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg flex-shrink-0">Add to Cart</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal-overlay fixed inset-0 bg-black/70 backdrop-blur-sm z-[110] flex items-center justify-center p-4 hidden opacity-0">
+        <div id="cart-content" class="modal-content bg-slate-900 w-full max-w-2xl max-h-[90vh] flex flex-col rounded-xl border border-slate-700 shadow-2xl relative opacity-0 transform scale-95">
+            <!-- Header -->
+            <div class="p-6 border-b border-slate-700 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-white">Your Cart</h2>
+                <button id="cart-close-btn" class="text-slate-400 hover:text-white transition-colors text-3xl leading-none font-bold p-2">&times;</button>
+            </div>
+
+            <!-- Cart Items -->
+            <div id="cart-items-container" class="p-6 flex-grow overflow-y-auto">
+                <!-- Cart items will be injected here -->
+                <!-- Empty Cart Message -->
+                <div id="empty-cart-message" class="text-center text-slate-400 py-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-16 w-16 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    <p class="mt-4 text-lg">Your cart is empty.</p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div id="cart-footer" class="p-6 border-t border-slate-700">
+                <div class="flex justify-between items-center font-bold text-white text-xl mb-4">
+                    <span>Total</span>
+                    <span id="cart-total-price">₱0</span>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <button id="add-more-btn" class="w-full bg-slate-700 text-white font-semibold py-3 px-5 rounded-lg hover:bg-slate-600 transition-colors">Add More Items</button>
+                    <button id="go-to-checkout-btn" class="w-full btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed" disabled>Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal-overlay fixed inset-0 bg-black/70 backdrop-blur-sm z-[120] flex items-center justify-center p-4 hidden opacity-0">
+        <div id="checkout-content" class="modal-content bg-slate-900 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl border border-slate-700 shadow-2xl relative opacity-0 transform scale-95">
+            <!-- Close Button -->
+            <button id="checkout-close-btn" class="sticky top-4 right-4 float-right text-slate-400 hover:text-white transition-colors z-10 text-3xl leading-none font-bold p-2">&times;</button>
+
+            <!-- Content -->
+            <div class="p-8 md:p-12">
+                <h2 class="text-3xl font-bold text-white mb-8">Checkout</h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Left Side: Order Summary -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-4 border-b border-slate-700 pb-2">Order Summary</h3>
+                        <div id="order-summary-container" class="space-y-4 text-slate-300 max-h-64 overflow-y-auto pr-2">
+                            <!-- Order items will be injected here -->
+                        </div>
+                         <div class="mt-4">
+                            <button id="checkout-add-more-btn" class="text-sm text-blue-400 hover:underline">+ Add more items</button>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-700 flex justify-between items-center font-bold text-white text-lg">
+                            <span>Total</span>
+                            <span id="checkout-total-price"></span>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Payment Details -->
+                    <div>
+                         <h3 class="text-xl font-semibold text-white mb-4 border-b border-slate-700 pb-2">Payment Information</h3>
+                         
+                        <form id="checkout-form" class="space-y-4">
+                             <!-- Payment Method Tabs -->
+                            <div class="flex border-b border-slate-700">
+                                <button type="button" data-payment-tab="card" class="payment-tab-button active flex-1 py-2 text-center font-semibold transition-colors">Card</button>
+                                <button type="button" data-payment-tab="ewallet" class="payment-tab-button flex-1 py-2 text-center font-semibold text-slate-400 hover:text-white transition-colors">E-Wallet</button>
+                                <button type="button" data-payment-tab="bank" class="payment-tab-button flex-1 py-2 text-center font-semibold text-slate-400 hover:text-white transition-colors">Bank Transfer</button>
+                            </div>
+
+                            <!-- Payment Panels -->
+                            <div class="!mt-6">
+                                <!-- Card Panel -->
+                                <div id="card-panel" class="payment-tab-panel active">
+                                    <div class="space-y-4">
+                                        <div>
+                                            <label for="name" class="block text-sm font-medium text-slate-300 mb-1">Full Name</label>
+                                            <input type="text" id="name" name="name" class="w-full bg-slate-800 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                        </div>
+                                        <div>
+                                            <label for="email" class="block text-sm font-medium text-slate-300 mb-1">Email Address</label>
+                                            <input type="email" id="email" name="email" class="w-full bg-slate-800 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                        </div>
+                                        <div>
+                                            <label for="card-number" class="block text-sm font-medium text-slate-300 mb-1">Card Number</label>
+                                            <input type="text" id="card-number" name="card-number" placeholder="•••• •••• •••• ••••" class="w-full bg-slate-800 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                        </div>
+                                        <div class="flex gap-4">
+                                            <div class="w-1/2">
+                                                <label for="expiry-date" class="block text-sm font-medium text-slate-300 mb-1">Expiry Date</label>
+                                                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM / YY" class="w-full bg-slate-800 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                            </div>
+                                            <div class="w-1/2">
+                                                 <label for="cvc" class="block text-sm font-medium text-slate-300 mb-1">CVC</label>
+                                                <input type="text" id="cvc" name="cvc" placeholder="•••" class="w-full bg-slate-800 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="w-full mt-4 btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg">Confirm Purchase</button>
+                                </div>
+
+                                <!-- E-Wallet Panel -->
+                                <div id="ewallet-panel" class="payment-tab-panel">
+                                    <p class="text-slate-400 mb-4 text-sm">Select your e-wallet to reveal payment details.</p>
+                                    <div class="flex gap-4 mb-4">
+                                        <button type="button" class="ewallet-option flex-1 p-4 bg-slate-800 rounded-lg" data-wallet="gcash">
+                                            <svg class="w-full h-8" viewBox="0 0 1024 301.302" fill="#0055ff"><path d="M848.337 13.109c-29.833 20.31-64.033 50.119-92.427 80.529-27.593 29.508-48.475 60.115-62.645 91.82-14.17 31.704-20.928 65.105-20.31 99.204 4.368 28.307 15.451 51.51 33.245 69.613 2.95 2.95 6.1 5.698 9.35 8.146 12.096 9.45 27.243 14.17 45.438 14.17h184.254V13.109H848.337z m-26.388 184.453c-1.209-1.209-2.714-2.112-4.219-2.915-13.865-7.135-22.137-20.005-21.528-34.454.61 14.449-7.745 27.319-21.628 34.454-1.404.802-2.91 1.706-4.219 2.915-10.887 10.887-17.16 25.13-17.16 40.582 0 30.54 24.825 55.364 55.364 55.364s55.364-24.824 55.364-55.364c.1-15.452-6.173-29.695-17.06-40.582z M475.98 13.109v273.18h-74.01V13.109h74.01z m-165.73 0v176.719c0 38.47-19.395 72.86-50.419 92.427-2.95 1.807-6.002 3.513-9.05 5.118-9.05 4.813-19.395 7.538-30.235 7.538-20.605 0-39.68-9.35-51.628-24.525-2.95-3.513-5.398-7.235-7.538-11.192-19.395-32.008-19.395-71.652 0-103.66 2.14-3.918 4.712-7.734 7.538-11.192 11.948-15.175 31.023-24.525 51.628-24.525 10.84 0 21.185 2.724 30.235 7.538 9.66 5.118 17.932 12.4 24.525 21.528V13.109h74.01z m-234.98 0v273.18H0V13.109h75.27z m610.151 0v141.7H1024V13.109h-75.27z M565.34 13.109v273.18H491.33V13.109h74.01z"/></svg>
+                                        </button>
+                                        <button type="button" class="ewallet-option flex-1 p-4 bg-slate-800 rounded-lg" data-wallet="maya">
+                                            <svg class="w-full h-8" viewBox="0 0 300 114" fill="#1c2f42"><path d="M12.44 113.88L50.36 12.4S53.12 0 65.56 0h40.68s11.52 1.08 11.52 12.4v89.04s-.54 12.44-14.22 12.44H14.22S.2 113.88 12.44 113.88zM234.44 113.88L272.36 12.4S275.12 0 287.56 0h-40.68s-11.52 1.08-11.52 12.4v89.04s.54 12.44 14.22 12.44h85.32s14.22 0 2.88-12.24L234.44 113.88z M148.82 56.4S130.52 1.08 114.86 1.08c-15.66 0-33.12 55.32-33.12 55.32s21.78 51.66 37.44 51.66c15.66 0 30.78-51.66 30.78-51.66l-1.14-.02z"/></svg>
+                                        </button>
+                                    </div>
+                                    <div id="ewallet-instructions" class="hidden text-center p-4 bg-slate-800/50 rounded-lg">
+                                        <img id="ewallet-qr-code" src="https://placehold.co/200x200/e2e8f0/1a202c?text=Scan+Me" alt="QR Code" class="mx-auto rounded-md">
+                                        <p id="ewallet-instruction-text" class="mt-4 font-semibold"></p>
+                                        <div class="mt-4">
+                                            <label for="ewallet-ref" class="block text-sm font-medium text-slate-300 mb-1">Reference Number</label>
+                                            <input type="text" id="ewallet-ref" class="w-full bg-slate-700 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                            <button type="submit" class="w-full mt-4 btn-primary text-white font-bold py-2 px-6 rounded-lg text-base">Confirm Purchase</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 <!-- Bank Transfer Panel -->
+                                <div id="bank-panel" class="payment-tab-panel">
+                                    <p class="text-slate-400 mb-4 text-sm">Transfer the total amount to one of the accounts below and submit the transaction reference number.</p>
+                                    <div class="space-y-3 p-4 bg-slate-800/50 rounded-lg text-slate-300">
+                                        <p><strong>BPI:</strong> 1234-5678-90 (ArchiTech PH)</p>
+                                        <p><strong>UnionBank:</strong> 0987-6543-21 (ArchiTech PH)</p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <label for="bank-ref" class="block text-sm font-medium text-slate-300 mb-1">Reference Number</label>
+                                        <input type="text" id="bank-ref" class="w-full bg-slate-700 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                        <button type="submit" class="w-full mt-4 btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg">Confirm Purchase</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase Success Modal -->
+    <div id="success-modal" class="modal-overlay fixed inset-0 bg-black/70 backdrop-blur-sm z-[130] flex items-center justify-center p-4 hidden opacity-0">
+        <div class="modal-content bg-slate-900 w-full max-w-md rounded-xl border border-slate-700 shadow-2xl p-8 text-center">
+            <div class="mx-auto bg-green-500/20 h-16 w-16 flex items-center justify-center rounded-full">
+                <svg class="h-8 w-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mt-6">Purchase Successful!</h3>
+            <p class="text-slate-400 mt-2">Thank you for your order. A download link has been sent to your email address.</p>
+            <button id="success-close-btn" class="w-full mt-6 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600">Close</button>
+        </div>
+    </div>
+
+    <!-- Contact Support Modal -->
+    <div id="contact-modal" class="modal-overlay fixed inset-0 bg-black/70 backdrop-blur-sm z-[130] flex items-center justify-center p-4 hidden opacity-0">
+        <div class="modal-content bg-slate-900 w-full max-w-lg rounded-xl border border-slate-700 shadow-2xl relative opacity-0 transform scale-95">
+            <div id="contact-form-container">
+                <!-- Header -->
+                <div class="p-6 border-b border-slate-700 flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-white">Contact Support</h2>
+                    <button id="contact-close-btn" class="text-slate-400 hover:text-white transition-colors text-3xl leading-none font-bold p-2">&times;</button>
+                </div>
+                <!-- Form -->
+                <form id="contact-form" class="p-8 space-y-4">
+                    <div>
+                        <label for="contact-name" class="block text-sm font-medium text-slate-300 mb-1">Full Name</label>
+                        <input type="text" id="contact-name" class="w-full bg-slate-800 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div>
+                        <label for="contact-email" class="block text-sm font-medium text-slate-300 mb-1">Email Address</label>
+                        <input type="email" id="contact-email" class="w-full bg-slate-800 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div>
+                        <label for="contact-order-number" class="block text-sm font-medium text-slate-300 mb-1">Order Number (Optional)</label>
+                        <input type="text" id="contact-order-number" class="w-full bg-slate-800 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="contact-message" class="block text-sm font-medium text-slate-300 mb-1">Message</label>
+                        <textarea id="contact-message" rows="4" class="w-full bg-slate-800 border border-slate-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full !mt-6 btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg">Send Message</button>
+                </form>
+            </div>
+            <!-- Success Message -->
+            <div id="contact-success-message" class="hidden p-8 text-center">
+                 <div class="mx-auto bg-green-500/20 h-16 w-16 flex items-center justify-center rounded-full">
+                    <svg class="h-8 w-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mt-6">Message Sent!</h3>
+                <p class="text-slate-400 mt-2">Our support team will get back to you shortly. Thank you for reaching out.</p>
+                <button id="contact-success-close-btn" class="w-full mt-6 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot -->
+    <div id="chatbot-container" class="fixed bottom-6 left-6 z-[140]">
+        <!-- Chat Window -->
+        <div id="chat-window" class="w-80 h-96 bg-slate-900 border border-slate-700 rounded-lg shadow-2xl flex flex-col transform translate-y-4 opacity-0 hidden">
+            <!-- Header -->
+            <div class="p-4 border-b border-slate-700 flex justify-between items-center bg-slate-800 rounded-t-lg">
+                <h3 class="font-bold text-white">Support Chat</h3>
+                <button id="chat-close-btn" class="text-slate-400 hover:text-white">&times;</button>
+            </div>
+            <!-- Messages -->
+            <div id="chat-messages" class="flex-grow p-4 space-y-4 overflow-y-auto">
+                <div class="chat-message self-start">
+                    <div class="bg-slate-800 rounded-lg p-3">
+                        <p class="text-sm text-white">Hello! How can I help you today?</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Input -->
+            <div class="p-4 border-t border-slate-700">
+                <form id="chat-form" class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Type your message..." class="flex-grow bg-slate-800 border border-slate-600 rounded-full py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm" autocomplete="off">
+                    <button type="submit" class="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 hover:bg-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- Chat Button -->
+        <button id="chat-button" class="bg-blue-500 text-white rounded-full h-16 w-16 flex items-center justify-center shadow-lg mt-4">
+             <!-- Chat Icon -->
+            <svg class="chat-icon h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+            <!-- Close Icon -->
+            <svg class="close-icon h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+    </div>
+
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Intersection Observer for fade-in animations
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-section');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Sticky header
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-black/80');
+                } else {
+                    header.classList.remove('bg-black/80');
+                }
+            });
+
+            // --- CENTRAL PRODUCT DATA STORES ---
+            const softwareData = {
+                'autocad': { 
+                    id: 'autocad', name: 'AutoCAD', short_desc: 'Industry-leading 2D and 3D CAD software for architects, engineers, and construction professionals.', basePrice: 149, 
+                    image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=AutoCAD+Blueprint', 'https://placehold.co/600x400/1e293b/e2e8f0?text=3D+Model+View', 'https://placehold.co/600x400/2d3748/e2e8f0?text=UI+Showcase'], 
+                    subtitle: 'One Time Payment, Lifetime Use', versions: ['2025 (Latest)', '2024', '2023', '2022'], description: `<p>AutoCAD® is computer-aided design (CAD) software that architects, engineers, and construction professionals rely on to create precise 2D and 3D drawings.</p><ul class="list-disc list-inside space-y-2"><li>Draft, annotate, and design 2D geometry and 3D models with solids, surfaces, and mesh objects.</li><li>Automate tasks such as comparing drawings, adding blocks, creating schedules, and more.</li><li>Customize with add-on apps and APIs to maximize productivity.</li></ul>`, 
+                    requirements: { '2025 (Latest)': `<ul class="space-y-2"><li><strong>Operating System:</strong> 64-bit Microsoft® Windows® 11 or Windows 10 version 1809 or above.</li><li><strong>Processor:</strong> 2.5–2.9 GHz processor (3+ GHz recommended).</li><li><strong>Memory:</strong> 8 GB RAM (16 GB recommended).</li><li><strong>Disk Space:</strong> 10.0 GB of free disk space for install.</li><li><strong>Display:</strong> 1920 x 1080 with True Color (up to 3840 x 2160 recommended).</li></ul>`, '2024': `<ul class="space-y-2"><li><strong>Operating System:</strong> 64-bit Microsoft® Windows® 11 or Windows 10 version 1809 or above.</li><li><strong>Processor:</strong> 2.5–2.9 GHz processor.</li><li><strong>Memory:</strong> 8 GB RAM (16 GB recommended).</li><li><strong>Disk Space:</strong> 10.0 GB of free disk space for install.</li></ul>`, '2023': `<ul class="space-y-2"><li><strong>Operating System:</strong> 64-bit Microsoft® Windows® 10.</li><li><strong>Processor:</strong> 2.5–2.9 GHz processor.</li><li><strong>Memory:</strong> 8 GB RAM.</li><li><strong>Disk Space:</strong> 8.0 GB of free disk space for install.</li></ul>`, '2022': `<ul class="space-y-2"><li><strong>Operating System:</strong> 64-bit Microsoft® Windows® 10.</li><li><strong>Processor:</strong> 2.5–2.9 GHz processor.</li><li><strong>Memory:</strong> 8 GB RAM.</li><li><strong>Disk Space:</strong> 7.0 GB of free disk space for install.</li></ul>`, }, 
+                    installation: {
+                        '2025 (Latest)': `<p>Your purchase includes a comprehensive video tutorial for <strong>AutoCAD 2025</strong> to guide you through the installation process seamlessly.</p><div class="flex items-center gap-3 bg-slate-800/50 p-4 rounded-lg"><svg class="w-8 h-8 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span>Step-by-step <strong>2025</strong> video guide included with your digital download.</span></div><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`,
+                        '2024': `<p>Follow the included video guide for a smooth installation of <strong>AutoCAD 2024</strong>.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`,
+                        '2023': `<p>This download comes with an easy-to-follow video tutorial for installing <strong>AutoCAD 2023</strong>.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`,
+                        '2022': `<p>Please refer to the attached video for instructions on how to install <strong>AutoCAD 2022</strong>.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`
+                    }
+                },
+                'revit': { id: 'revit', name: 'Autodesk Revit', short_desc: 'Powerful BIM software for planning, designing, constructing, and managing buildings and infrastructure.', basePrice: 149, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Revit+BIM+Model', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Floorplan+View', 'https://placehold.co/600x400/2d3748/e2e8f0?text=3D+Section'], subtitle: 'One Time Payment, Lifetime Use', versions: ['2025 (Latest)', '2024', '2023', '2022'], description: `<p>Revit is a powerful Building Information Modeling (BIM) software that helps architecture, engineering, and construction (AEC) teams create high-quality buildings and infrastructure.</p><ul class="list-disc list-inside space-y-2"><li>Use intelligent models to inform and communicate project decisions.</li><li>Generate floor plans, elevations, sections, schedules, and 3D views.</li><li>Streamline documentation and coordinate with multidisciplinary teams.</li></ul>`, requirements: { '2025 (Latest)': `<ul class="space-y-2"><li><strong>Operating System:</strong> 64-bit Microsoft® Windows® 11 or Windows 10.</li><li><strong>Processor:</strong> Multi-Core Intel® Xeon®, or i-Series processor or AMD® equivalent.</li><li><strong>Memory:</strong> 16 GB RAM (32 GB recommended for complex models).</li><li><strong>Disk Space:</strong> 30 GB of free disk space.</li></ul>`, '2024': `<ul class="space-y-2"><li><strong>Operating System:</strong> 64-bit Microsoft® Windows® 11 or Windows 10.</li><li><strong>Processor:</strong> Multi-Core Intel® Xeon®, or i-Series processor or AMD® equivalent.</li><li><strong>Memory:</strong> 16 GB RAM.</li><li><strong>Disk Space:</strong> 30 GB of free disk space.</li></ul>`, '2023': `<ul class="space-y-2"><li><strong>Operating System:</strong> 64-bit Microsoft® Windows® 10.</li><li><strong>Processor:</strong> Multi-Core Intel® Xeon®, or i-Series processor or AMD® equivalent.</li><li><strong>Memory:</strong> 8 GB RAM (16 GB recommended).</li><li><strong>Disk Space:</strong> 25 GB of free disk space.</li></ul>`, '2022': `<ul class="space-y-2"><li><strong>Operating System:</strong> 64-bit Microsoft® Windows® 10.</li><li><strong>Processor:</strong> Single- or Multi-Core Intel®, Xeon®, or i-Series processor or AMD® equivalent.</li><li><strong>Memory:</strong> 8 GB RAM.</li><li><strong>Disk Space:</strong> 25 GB of free disk space.</li></ul>`, }, 
+                    installation: {
+                        '2025 (Latest)': `<p>Our video tutorial will walk you through the entire installation and setup process for Revit 2025.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`,
+                        '2024': `<p>Our video tutorial will walk you through the entire installation and setup process for Revit 2024.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`,
+                        '2023': `<p>Our video tutorial will walk you through the entire installation and setup process for Revit 2023.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`,
+                        '2022': `<p>Our video tutorial will walk you through the entire installation and setup process for Revit 2022.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`
+                    }
+                },
+                'sketchup': { id: 'sketchup', name: 'SketchUp Pro', short_desc: 'User-friendly 3D modeling for architecture, interior design, and more. From concept to creation.', basePrice: 149, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=SketchUp+Model', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Wireframe+View', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Layout+Document'], subtitle: 'One Time Payment, Lifetime Use', versions: ['2024 (Latest)', '2023', '2022'], description: `<p>SketchUp Pro is the most intuitive way to design, document, and communicate your ideas in 3D. Work through your ideas in 3D space and quickly develop your projects.</p>`, requirements: { '2024 (Latest)': `<ul class="space-y-2"><li><strong>Operating System:</strong> Windows 10, Windows 11</li><li><strong>Processor:</strong> 2+ GHz processor.</li><li><strong>Memory:</strong> 8 GB RAM.</li><li><strong>Graphics Card:</strong> 3D class video card with 1 GB of memory or higher and support for hardware acceleration.</li></ul>`, '2023': `<ul class="space-y-2"><li><strong>Operating System:</strong> Windows 10</li><li><strong>Processor:</strong> 2+ GHz processor.</li><li><strong>Memory:</strong> 8 GB RAM.</li><li><strong>Graphics Card:</strong> 3D class video card with 1 GB of memory or higher.</li></ul>`, '2022': `<ul class="space-y-2"><li><strong>Operating System:</strong> Windows 10</li><li><strong>Processor:</strong> 1 GHz processor.</li><li><strong>Memory:</strong> 4 GB RAM.</li><li><strong>Graphics Card:</strong> 3D class video card with 512 MB of memory or higher.</li></ul>`, }, 
+                    installation: {
+                        '2024 (Latest)': `<p>Installation for SketchUp 2024 is simple with our included guide. Get started in minutes.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`,
+                        '2023': `<p>Installation for SketchUp 2023 is simple with our included guide. Get started in minutes.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`,
+                        '2022': `<p>Installation for SketchUp 2022 is simple with our included guide. Get started in minutes.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`
+                    }
+                },
+                'photoshop': { 
+                    id: 'photoshop', name: 'Adobe Photoshop', short_desc: 'The industry-standard for photo editing, graphic design, and digital art.', basePrice: 149, 
+                    image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Photoshop+Edit', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Photo+Retouch', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Digital+Painting'], 
+                    subtitle: 'One Time Payment, Lifetime Use', versions: ['2024 (Latest)', '2023'], 
+                    description: `<p>Adobe Photoshop is the world's best imaging and graphic design software. Create and enhance photographs, illustrations, and 3D artwork. Design websites and mobile apps. Edit videos, simulate real-life paintings, and more.</p>`, 
+                    requirements: { 
+                        '2024 (Latest)': `<ul class="space-y-2"><li><strong>Operating System:</strong> Windows 10 64-bit (version 22H2) or later.</li><li><strong>Processor:</strong> Intel® or AMD processor with 64-bit support; 2 GHz or faster processor with SSE 4.2 or later.</li><li><strong>Memory:</strong> 8 GB RAM (16 GB recommended).</li><li><strong>Graphics Card:</strong> GPU with DirectX 12 support and 2 GB of GPU memory.</li></ul>`, 
+                        '2023': `<ul class="space-y-2"><li><strong>Operating System:</strong> Windows 10 64-bit (version 21H2) or later.</li><li><strong>Processor:</strong> Intel® or AMD processor with 64-bit support; 2 GHz or faster processor.</li><li><strong>Memory:</strong> 8 GB RAM.</li><li><strong>Graphics Card:</strong> GPU with DirectX 12 support and 1.5 GB of GPU memory.</li></ul>`
+                    }, 
+                    installation: {
+                        '2024 (Latest)': `<p>Your purchase includes a detailed video guide for installing Adobe Photoshop 2024.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`,
+                        '2023': `<p>Follow the simple video instructions to install Adobe Photoshop 2023.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`
+                    }
+                },
+                'enscape': { id: 'enscape', name: 'Enscape', short_desc: 'Real-time rendering and virtual reality that brings your visual explorations directly into your modeling tools.', basePrice: 149, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Enscape+Render', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Real-time+View', 'https://placehold.co/600x400/2d3748/e2e8f0?text=VR+Showcase'], subtitle: 'One Time Payment, Lifetime Use', versions: ['Latest Version'], description: `<p>Enscape plugs directly into your modeling software, giving you an integrated visualization and design workflow. It is the easiest and fastest way to turn your models into immersive 3D experiences.</p>`, requirements: `<p>Requires a compatible host application (Revit, SketchUp, Rhino, Archicad, or Vectorworks) and a dedicated NVIDIA or AMD graphics card with 4GB VRAM or more.</p>`, 
+                    installation: {
+                        'Latest Version': `<p>Follow the video tutorial to connect Enscape to your favorite design software.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`
+                    }
+                },
+                'lumion': { id: 'lumion', name: 'Lumion', short_desc: 'Powerful, easy-to-use 3D rendering software that lets you visualize your architectural designs in seconds.', basePrice: 149, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Lumion+Exterior', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Interior+Scene', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Animation+Mode'], subtitle: 'One Time Payment, Lifetime Use', versions: ['Lumion 2024 (Latest)', 'Lumion 2023'], description: `<p>Lumion is 3D rendering software made especially for architects and designers. If you have a 3D model of your design, Lumion can help you bring it to life.</p>`, requirements: { 'Lumion 2024 (Latest)': `<p>A high-end graphics card (e.g., NVIDIA GeForce RTX 4070 or better) and 32GB of system memory are recommended for the best performance.</p>`, 'Lumion 2023': `<p>A high-end graphics card (e.g., NVIDIA GeForce RTX 3060 or better) and 16GB of system memory are recommended for good performance.</p>`, }, 
+                    installation: {
+                        'Lumion 2024 (Latest)': `<p>A step-by-step installation guide is provided for Lumion 2024.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`,
+                        'Lumion 2023': `<p>A step-by-step installation guide is provided for Lumion 2023.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`
+                    }
+                },
+                'vray': { id: 'vray', name: 'V-Ray', short_desc: 'A complete 3D rendering software for artists and designers. Perfect for photorealistic visualizations.', basePrice: 149, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=V-Ray+Photoreal', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Product+Design', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Archviz+Render'], subtitle: 'One Time Payment, Lifetime Use', versions: ['Latest Version'], description: `<p>V-Ray is a production-proven rendering software. Known for its versatility and ability to handle any type of project, V-Ray is considered an industry standard for architecture, automotive, and film/VFX.</p>`, requirements: `<p>Requirements vary depending on the host application (3ds Max, Maya, SketchUp, etc.). An SSE4.2 compatible processor and a powerful GPU are generally required.</p>`, 
+                    installation: {
+                       'Latest Version': `<p>Video tutorials cover installation for all major compatible design software.</p><a href="#" class="inline-block mt-4 bg-blue-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-600 transition-all duration-300">Download Guide</a>`
+                    }
+                }
+            };
+
+            const modelsData = {
+                'Living Room': {
+                    image: 'https://placehold.co/600x400/1e293b/e2e8f0?text=Living+Rooms',
+                    short_desc: 'Collections of modern furniture for elegant living spaces.',
+                    products: {
+                        'living-room-vol-1': { id: 'living-room-vol-1', name: 'Living Room Vol. 1', short_desc: 'A collection of modern and minimalist furniture.', price: 49, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Living+Room+Scene', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Sofa+Detail', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Asset+Grid'], description: '<p>Curated collection of high-quality, photorealistic 3D models for contemporary living rooms. Perfect for architectural visualizations and interior design projects.</p>', compatibility: { software: 'SketchUp 2021+, 3ds Max 2020+', renderers: 'V-Ray, Corona, Enscape' }, inclusions: '<ul class="list-disc list-inside space-y-2"><li>Sofa and Armchair Set</li><li>Coffee Table</li><li>TV Console</li><li>Decorative Plants and Vases</li><li>Rug and Lighting Fixtures</li></ul>' },
+                        'living-room-vol-2': { id: 'living-room-vol-2', name: 'Living Room Vol. 2', short_desc: 'Scandinavian-inspired assets for cozy interiors.', price: 49, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Scandi+Living+Room', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Chair+and+Lamp', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Wood+Details'], description: '<p>A set of assets with a focus on light woods, neutral tones, and functional design, ideal for creating a warm and inviting atmosphere.</p>', compatibility: { software: 'SketchUp 2022+, Blender', renderers: 'Enscape, Cycles' }, inclusions: '<ul class="list-disc list-inside space-y-2"><li>L-Shaped Sectional Sofa</li><li>Nesting Coffee Tables</li><li>Sideboard Cabinet</li><li>Floor Lamp</li></ul>' }
+                    }
+                },
+                 'Bedroom': {
+                    image: 'https://placehold.co/600x400/1e293b/e2e8f0?text=Bedrooms',
+                    short_desc: 'Cozy and modern bedroom furniture and decor.',
+                    products: {
+                        'bedroom-pack-vol-1': { id: 'bedroom-pack-vol-1', name: 'Bedroom Pack Vol. 1', short_desc: 'A complete set of furniture for a contemporary bedroom.', price: 49, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Bedroom+Scene', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Bed+Detail', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Decor+Assets'], description: '<p>Design a peaceful and stylish bedroom with this collection of high-quality 3D models. Includes a bed, nightstands, wardrobe, and decorative items.</p>', compatibility: { software: 'SketchUp 2022+, 3ds Max 2021+', renderers: 'V-Ray, Enscape' }, inclusions: '<ul class="list-disc list-inside space-y-2"><li>Queen Size Bed with Linens</li><li>Two Nightstands</li><li>Dresser and Mirror</li><li>Wardrobe</li><li>Decorative Lamps and Rug</li></ul>' }
+                    }
+                },
+                'Construction': {
+                    image: 'https://placehold.co/600x400/1e293b/e2e8f0?text=Construction',
+                    short_desc: 'Essential equipment for construction site visualizations.',
+                    products: {
+                       'construction-set-1': { id: 'construction-set-1', name: 'Construction Site Vol. 1', short_desc: 'Essential equipment and assets for construction visualizations.', price: 49, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Construction+Site', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Excavator', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Crane+Model'], description: '<p>A set of detailed 3D models including cranes, excavators, barriers, and other common construction site equipment.</p>', compatibility: { software: 'Blender, Cinema 4D', renderers: 'Cycles, Octane' }, inclusions: '<ul class="list-disc list-inside space-y-2"><li>Tower Crane</li><li>Excavator</li><li>Cement Mixer</li><li>Safety Barriers & Cones</li></ul>' }
+                    }
+                },
+                 'Dining Room': {
+                    image: 'https://placehold.co/600x400/1e293b/e2e8f0?text=Dining+Rooms',
+                    short_desc: 'Sleek and stylish dining sets for modern interiors.',
+                    products: {
+                        'dining-set-modern': { id: 'dining-set-modern', name: 'Modern Dining Set', short_desc: 'Sleek and stylish dining table and chairs for modern interiors.', price: 49, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Dining+Set', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Chair+Detail', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Table+Decor'], description: '<p>A complete dining set with a minimalist aesthetic. Includes table, chairs, and decorative centerpiece.</p>', compatibility: { software: 'SketchUp 2022+', renderers: 'Enscape, V-Ray' }, inclusions: '<ul class="list-disc list-inside space-y-2"><li>6-Seater Dining Table</li><li>Dining Chairs (x6)</li><li>Pendant Light Fixture</li><li>Tableware Set</li></ul>' }
+                    }
+                },
+                 'Trees': {
+                    image: 'https://placehold.co/600x400/1e293b/e2e8f0?text=Trees',
+                    short_desc: 'High-quality tree models for realistic landscape design.',
+                     products: {
+                        'forest-pack-1': { id: 'forest-pack-1', name: 'Forest Pack Vol. 1', short_desc: 'A variety of high-quality tree models for landscape design.', price: 49, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Forest+Pack', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Oak+Tree', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Pine+Tree+Cluster'], description: '<p>Create realistic natural environments with this pack of assorted deciduous and evergreen trees.</p>', compatibility: { software: '3ds Max, Forest Pack Pro', renderers: 'V-Ray, Corona' }, inclusions: '<ul class="list-disc list-inside space-y-2"><li>Oak Tree (3 variations)</li><li>Pine Tree (4 variations)</li><li>Maple Tree (2 variations)</li></ul>' }
+                     }
+                },
+                 'Kitchen': {
+                    image: 'https://placehold.co/600x400/1e293b/e2e8f0?text=Kitchens',
+                    short_desc: 'Contemporary appliances and fixtures for kitchens.',
+                    products: {
+                       'kitchen-appliances': { id: 'kitchen-appliances', name: 'Modern Kitchen Appliances', short_desc: 'A set of contemporary kitchen appliances.', price: 49, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Kitchen+Appliances', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Refrigerator', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Oven+and+Stove'], description: '<p>High-detail models of essential kitchen appliances with a stainless steel finish.</p>', compatibility: { software: 'SketchUp 2021+, Revit 2022+', renderers: 'V-Ray, Enscape' }, inclusions: '<ul class="list-disc list-inside space-y-2"><li>Refrigerator</li><li>Oven and Cooktop</li><li>Microwave</li><li>Dishwasher</li></ul>' }
+                    }
+                },
+                 'House Models': {
+                    image: 'https://placehold.co/600x400/1e293b/e2e8f0?text=House+Models',
+                    short_desc: 'Complete, fully-textured exterior house models.',
+                    products: {
+                        'suburban-house-1': { id: 'suburban-house-1', name: 'Suburban House Model', short_desc: 'A complete, fully-textured suburban house model.', price: 49, image: ['https://placehold.co/600x400/1a202c/e2e8f0?text=Suburban+House', 'https://placehold.co/600x400/1e293b/e2e8f0?text=Exterior+Detail', 'https://placehold.co/600x400/2d3748/e2e8f0?text=Garden+View'], description: '<p>A two-story contemporary house model, perfect for architectural exterior visualizations.</p>', compatibility: { software: 'SketchUp 2022+, Lumion 2023', renderers: 'Lumion, Enscape' }, inclusions: '<ul class="list-disc list-inside space-y-2"><li>Exterior House Model</li><li>Basic Landscaping</li><li>Material Textures Included</li></ul>' }
+                    }
+                }
+            };
+
+            // --- CART STATE ---
+            let cart = [];
+
+            // Create unified search indexes
+            const globalProductSearchIndex = [
+                ...Object.values(softwareData).map(p => ({ ...p, type: 'software' })),
+                ...Object.values(modelsData).flatMap(cat => Object.values(cat.products).map(p => ({ ...p, type: 'model' })))
+            ];
+            const modelCategorySearchIndex = Object.keys(modelsData).map(name => ({ id: name, name, short_desc: modelsData[name].short_desc, type: 'category' }));
+
+
+            // --- DYNAMIC CONTENT RENDERING ---
+            const softwarePanel = document.getElementById('software-panel');
+            const modelsCategoryGrid = document.getElementById('models-category-grid');
+            const modelProductsGrid = document.getElementById('model-products-grid');
+
+            function createProductCard(p) {
+                const type = p.basePrice ? 'software' : 'model'; // Differentiate based on price key
+                return `
+                    <div class="card-glow bg-slate-900 rounded-lg overflow-hidden flex flex-col" data-product-id="${p.id}" data-product-type="${type}">
+                        <img src="${Array.isArray(p.image) ? p.image[0] : p.image}" alt="${p.name}" class="w-full h-48 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-semibold text-white mb-2">${p.name}</h3>
+                            <p class="text-slate-400 mb-4 flex-grow">${p.short_desc}</p>
+                            <div class="flex justify-between items-center mt-4">
+                                <span class="text-2xl font-bold text-blue-400">₱${p.basePrice || p.price}</span>
+                                <button class="view-details-btn bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-300 pointer-events-none">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function renderSoftwareCards() {
+                softwarePanel.innerHTML = Object.values(softwareData).map(p => createProductCard(p)).join('');
+            }
+
+            function renderModelCategories() {
+                modelsCategoryGrid.innerHTML = Object.keys(modelsData).map(categoryName => {
+                    const category = modelsData[categoryName];
+                    return `
+                         <div class="card-glow bg-slate-900 rounded-lg overflow-hidden flex flex-col" data-category-name="${categoryName}" style="cursor: pointer;">
+                            <img src="${category.image}" alt="${categoryName}" class="w-full h-48 object-cover">
+                            <div class="p-6 flex-grow flex flex-col">
+                                <h3 class="text-xl font-semibold text-white mb-2">${categoryName}</h3>
+                                <p class="text-slate-400 mb-4 flex-grow">${category.short_desc}</p>
+                                <div class="flex justify-end items-center mt-4">
+                                    <button class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-300 pointer-events-none">
+                                        View Products
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            const modelProductsView = document.getElementById('model-products-view');
+            const modelsCategoryView = document.getElementById('models-category-view');
+            const backToCategoriesBtn = document.getElementById('back-to-categories-btn');
+            const modelProductsTitle = document.getElementById('model-products-title');
+
+            function showModelProducts(categoryName) {
+                const category = modelsData[categoryName];
+                if (!category) return;
+
+                modelProductsTitle.textContent = categoryName;
+                modelProductsGrid.innerHTML = Object.values(category.products).map(p => createProductCard(p)).join('');
+                
+                modelsCategoryView.classList.add('hidden');
+                modelProductsView.style.display = 'block';
+
+                addCardClickListeners(); // Re-add listeners for the newly created product cards
+            }
+            
+            function switchToModelsTabAndShowCategory(categoryName) {
+                document.querySelector('button[data-tab="models"]').click();
+                showModelProducts(categoryName);
+            }
+
+            backToCategoriesBtn.addEventListener('click', () => {
+                modelProductsView.style.display = 'none';
+                modelsCategoryView.classList.remove('hidden');
+            });
+
+
+            // --- UNIVERSAL SEARCH LOGIC ---
+            const searchInput = document.getElementById('search-input');
+            const suggestionsContainer = document.getElementById('search-suggestions');
+            const productsHeader = document.getElementById('products-header');
+            const searchHeader = document.getElementById('search-header');
+            const searchTitle = document.getElementById('search-title');
+            const backToProductsBtn = document.getElementById('back-to-products-btn');
+            const tabNavigation = document.getElementById('tab-navigation');
+            const allPanels = document.querySelectorAll('.tab-panel');
+            const searchResultsPanel = document.getElementById('search-results-panel');
+            const searchResultsGrid = document.getElementById('search-results-grid');
+            const noResultsMessage = document.getElementById('no-results-message');
+
+            const showSuggestions = () => {
+                const term = searchInput.value.toLowerCase().trim();
+                suggestionsContainer.innerHTML = '';
+                if (term.length < 2) {
+                    suggestionsContainer.classList.add('hidden');
+                    return;
+                }
+            
+                const matchingProducts = globalProductSearchIndex
+                    .filter(p => p.name.toLowerCase().includes(term) || p.short_desc.toLowerCase().includes(term));
+            
+                const matchingCategories = modelCategorySearchIndex
+                    .filter(cat => cat.name.toLowerCase().includes(term));
+
+                const suggestions = [...matchingCategories, ...matchingProducts];
+                const uniqueSuggestions = Array.from(new Map(suggestions.map(item => [item.name, item])).values());
+            
+                if (uniqueSuggestions.length > 0) {
+                    uniqueSuggestions.slice(0, 7).forEach(item => { 
+                        const el = document.createElement('a');
+                        el.href = '#';
+                        el.classList.add('block', 'p-4', 'text-white', 'hover:bg-slate-700', 'transition-colors', 'duration-200', 'cursor-pointer');
+                        
+                        if (item.type === 'category') {
+                            el.innerHTML = `${item.name} <span class="text-xs bg-blue-500/50 text-blue-300 rounded-full px-2 py-1 ml-2">Category</span>`;
+                        } else {
+                            el.textContent = item.name;
+                        }
+            
+                        el.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            searchInput.value = item.name;
+                            suggestionsContainer.classList.add('hidden');
+            
+                            if (item.type === 'category') {
+                                switchToModelsTabAndShowCategory(item.id);
+                            } else {
+                                openModal(item.id, item.type);
+                            }
+                        });
+                        suggestionsContainer.appendChild(el);
+                    });
+                    suggestionsContainer.classList.remove('hidden');
+                } else {
+                    suggestionsContainer.classList.add('hidden');
+                }
+            };
+            
+            const performSearch = () => {
+                const term = searchInput.value.toLowerCase().trim();
+                suggestionsContainer.classList.add('hidden');
+
+                if (term === '') {
+                    exitSearchMode();
+                    return;
+                }
+
+                const matchingProducts = globalProductSearchIndex
+                    .filter(p => p.name.toLowerCase().includes(term) || p.short_desc.toLowerCase().includes(term));
+
+                productsHeader.classList.add('hidden');
+                searchHeader.classList.remove('hidden');
+                searchTitle.textContent = `Results for "${searchInput.value}"`;
+                tabNavigation.classList.add('hidden');
+                allPanels.forEach(p => p.classList.remove('active'));
+                searchResultsPanel.classList.remove('hidden');
+                
+                searchResultsGrid.innerHTML = '';
+                if (matchingProducts.length > 0) {
+                    matchingProducts.forEach(p => {
+                        searchResultsGrid.innerHTML += createProductCard(p);
+                    });
+                    noResultsMessage.classList.add('hidden');
+                    searchResultsGrid.classList.add('active');
+                } else {
+                    noResultsMessage.classList.remove('hidden');
+                    searchResultsGrid.classList.remove('active');
+                }
+                addCardClickListeners();
+            };
+            
+            const exitSearchMode = () => {
+                searchInput.value = '';
+                productsHeader.classList.remove('hidden');
+                searchHeader.classList.add('hidden');
+                tabNavigation.classList.remove('hidden');
+                searchResultsPanel.classList.add('hidden');
+                document.querySelector('.tab-button.active').click(); 
+            }
+
+            searchInput.addEventListener('input', showSuggestions);
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    performSearch();
+                }
+            });
+            document.getElementById('search-button').addEventListener('click', performSearch);
+            backToProductsBtn.addEventListener('click', exitSearchMode);
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+                    suggestionsContainer.classList.add('hidden');
+                }
+            });
+            
+            // Main Product Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    if (!tabNavigation.classList.contains('hidden')) {
+                        const tab = button.dataset.tab;
+                        if (tab === 'models') {
+                             backToCategoriesBtn.click();
+                        }
+                        
+                        tabButtons.forEach(btn => btn.classList.remove('active', 'text-slate-300'));
+                        button.classList.add('active');
+                        tabButtons.forEach(btn => { if(!btn.classList.contains('active')) btn.classList.add('text-slate-300') });
+                        
+                        allPanels.forEach(panel => {
+                           panel.classList.remove('active');
+                           if(panel.id === `${tab}-panel`) panel.classList.add('active');
+                        });
+                    } else {
+                        exitSearchMode();
+                        setTimeout(() => button.click(), 0);
+                    }
+                });
+            });
+
+            // --- DYNAMIC PRODUCT MODAL ---
+            const productModal = document.getElementById('product-modal');
+            const closeModalBtn = document.getElementById('modal-close-btn');
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            const addToCartContainer = document.getElementById('add-to-cart-container');
+
+            const modal = {
+                content: document.getElementById('modal-content'),
+                scrollContent: document.getElementById('modal-scroll-content'),
+                title: document.getElementById('modal-title'),
+                subtitle: document.getElementById('modal-subtitle'),
+                imageContainer: document.getElementById('modal-image-container'),
+                versionContainer: document.getElementById('modal-version-container'),
+                versionSelect: document.getElementById('modal-version-select'),
+                price: document.getElementById('modal-price'),
+                descriptionPanel: document.getElementById('modal-description-panel'),
+                requirements: { tab: document.getElementById('requirements-tab'), panel: document.getElementById('modal-requirements-panel') },
+                installation: { tab: document.getElementById('installation-tab'), panel: document.getElementById('modal-installation-panel') },
+                compatibility: { tab: document.getElementById('compatibility-tab'), panel: document.getElementById('modal-compatibility-panel') },
+                inclusions: { tab: document.getElementById('inclusions-tab'), panel: document.getElementById('modal-inclusions-panel') }
+            };
+
+             // --- Sticky Footer Elements ---
+            const modalStickyFooter = document.getElementById('modal-sticky-footer');
+            const stickyFooterTitle = document.getElementById('sticky-footer-title');
+            const stickyFooterPrice = document.getElementById('sticky-footer-price');
+            const stickyFooterViewCartBtn = document.getElementById('sticky-footer-view-cart-btn');
+            const stickyFooterAddToCartContainer = document.getElementById('sticky-footer-add-to-cart-container');
+
+
+             // --- CART MODAL ELEMENTS ---
+            const cartModal = document.getElementById('cart-modal');
+            const cartContent = document.getElementById('cart-content');
+            const cartCloseBtn = document.getElementById('cart-close-btn');
+            const cartButton = document.getElementById('cart-button');
+            const cartButtonMobile = document.getElementById('cart-button-mobile');
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const cartTotalPriceEl = document.getElementById('cart-total-price');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            const cartFooter = document.getElementById('cart-footer');
+            const goToCheckoutBtn = document.getElementById('go-to-checkout-btn');
+            const addMoreBtn = document.getElementById('add-more-btn');
+            const checkoutAddMoreBtn = document.getElementById('checkout-add-more-btn');
+
+            // --- CHECKOUT AND SUCCESS MODALS ---
+            const checkoutModal = document.getElementById('checkout-modal');
+            const checkoutCloseBtn = document.getElementById('checkout-close-btn');
+            const checkoutContent = document.getElementById('checkout-content');
+            const orderSummaryContainer = document.getElementById('order-summary-container');
+            const checkoutTotalPrice = document.getElementById('checkout-total-price');
+            const checkoutForm = document.getElementById('checkout-form');
+            const successModal = document.getElementById('success-modal');
+            const successCloseBtn = document.getElementById('success-close-btn');
+
+            // --- CONTACT SUPPORT MODAL ---
+            const contactSupportBtn = document.getElementById('contact-support-btn-footer');
+            const contactModal = document.getElementById('contact-modal');
+            const contactCloseBtn = document.getElementById('contact-close-btn');
+            const contactFormContainer = document.getElementById('contact-form-container');
+            const contactForm = document.getElementById('contact-form');
+            const contactSuccessMessage = document.getElementById('contact-success-message');
+            const contactSuccessCloseBtn = document.getElementById('contact-success-close-btn');
+
+            // --- CHATBOT ELEMENTS ---
+            const chatButton = document.getElementById('chat-button');
+            const chatWindow = document.getElementById('chat-window');
+            const chatCloseBtn = document.getElementById('chat-close-btn');
+            const chatMessagesContainer = document.getElementById('chat-messages');
+            const chatForm = document.getElementById('chat-form');
+            const chatInput = document.getElementById('chat-input');
+
+
+            // --- Payment Tab Elements ---
+            const paymentTabButtons = document.querySelectorAll('.payment-tab-button');
+            const paymentTabPanels = document.querySelectorAll('.payment-tab-panel');
+            const ewalletOptions = document.querySelectorAll('.ewallet-option');
+            const ewalletInstructions = document.getElementById('ewallet-instructions');
+            const ewalletInstructionText = document.getElementById('ewallet-instruction-text');
+            
+            let sliderInterval = null;
+            let currentSlideIndex = 0;
+
+            const stopSlider = () => {
+                if (sliderInterval) {
+                    clearInterval(sliderInterval);
+                    sliderInterval = null;
+                }
+            };
+
+            const startSlider = (slides) => {
+                stopSlider(); // Ensure no multiple intervals are running
+                if (slides.length > 1) {
+                    sliderInterval = setInterval(() => {
+                        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                        showSlide(slides, currentSlideIndex);
+                    }, 4000);
+                }
+            };
+
+            const showSlide = (slides, index) => {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+            };
+
+            const populateModal = (productId, type) => {
+                const data = globalProductSearchIndex.find(p => p.id === productId);
+                if (!data) return;
+
+                modal.title.textContent = data.name;
+                modal.descriptionPanel.innerHTML = data.description;
+                
+                modal.imageContainer.innerHTML = ''; 
+                stopSlider();
+
+                const images = Array.isArray(data.image) ? data.image : [data.image];
+                
+                images.forEach((src, index) => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = `${data.name} showcase ${index + 1}`;
+                    img.classList.add('slider-image');
+                    if (index === 0) img.classList.add('active');
+                    modal.imageContainer.appendChild(img);
+                });
+
+                const slides = modal.imageContainer.querySelectorAll('.slider-image');
+                currentSlideIndex = 0;
+
+                if (slides.length > 1) {
+                    const prevButton = document.createElement('button');
+                    prevButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>`;
+                    prevButton.className = 'slider-arrow left';
+                    prevButton.onclick = () => {
+                        currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+                        showSlide(slides, currentSlideIndex);
+                        stopSlider();
+                        setTimeout(() => startSlider(slides), 6000); 
+                    };
+
+                    const nextButton = document.createElement('button');
+                    nextButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>`;
+                    nextButton.className = 'slider-arrow right';
+                     nextButton.onclick = () => {
+                        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                        showSlide(slides, currentSlideIndex);
+                        stopSlider();
+                        setTimeout(() => startSlider(slides), 6000);
+                    };
+
+                    modal.imageContainer.appendChild(prevButton);
+                    modal.imageContainer.appendChild(nextButton);
+                    startSlider(slides);
+                }
+
+                document.querySelectorAll('.modal-tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelector('[data-modal-tab="description"]').classList.add('active');
+                document.querySelectorAll('.modal-tab-panel').forEach(p => p.classList.remove('active'));
+                modal.descriptionPanel.classList.add('active');
+
+                // Restore default "Add to Cart" button and check cart status
+                updateAddToCartButtonState();
+
+
+                if (type === 'software') {
+                    modal.subtitle.textContent = data.subtitle;
+                    modal.price.textContent = `₱${data.basePrice}`;
+                    modal.versionContainer.style.display = 'block';
+                    
+                    modal.requirements.tab.style.display = 'inline-block';
+                    modal.installation.tab.style.display = 'inline-block';
+                    modal.compatibility.tab.style.display = 'none';
+                    modal.inclusions.tab.style.display = 'none';
+                    
+                    const defaultVersion = data.versions[0];
+                    modal.requirements.panel.innerHTML = typeof data.requirements === 'object' ? data.requirements[defaultVersion] : data.requirements;
+                    modal.installation.panel.innerHTML = typeof data.installation === 'object' ? data.installation[defaultVersion] : data.installation;
+
+                    modal.versionSelect.innerHTML = '';
+                    data.versions.forEach(version => {
+                        const option = document.createElement('option');
+                        option.textContent = version;
+                        modal.versionSelect.appendChild(option);
+                    });
+                } else { // It's a model
+                    modal.subtitle.textContent = `High-quality 3D model pack`;
+                    modal.price.textContent = `₱${data.price}`;
+                    modal.versionContainer.style.display = 'none';
+
+                    modal.requirements.tab.style.display = 'none';
+                    modal.installation.tab.style.display = 'none';
+                    modal.compatibility.tab.style.display = 'inline-block';
+                    modal.inclusions.tab.style.display = 'inline-block';
+
+                    modal.compatibility.panel.innerHTML = `<ul class="space-y-2"><li><strong>Compatible Software:</strong> ${data.compatibility.software}</li><li><strong>Supported Renderers:</strong> ${data.compatibility.renderers}</li></ul>`;
+                    modal.inclusions.panel.innerHTML = data.inclusions;
+                }
+                
+                // Populate and set up sticky footer
+                stickyFooterTitle.textContent = data.name;
+                stickyFooterPrice.textContent = modal.price.textContent;
+                // document.getElementById('sticky-footer-add-to-cart-btn').addEventListener('click', handleAddToCart);
+                stickyFooterViewCartBtn.addEventListener('click', openCartModal);
+                updateCartIcon(); // To update the sticky footer count
+            };
+            
+            modal.versionSelect.addEventListener('change', () => {
+                const productId = productModal.dataset.currentProduct;
+                if (!productId || productModal.dataset.productType !== 'software') return;
+
+                const data = softwareData[productId];
+                const selectedIndex = modal.versionSelect.selectedIndex;
+                const selectedVersion = modal.versionSelect.value;
+                const priceDrop = 20;
+                
+                const newPrice = Math.max(49, data.basePrice - (selectedIndex * priceDrop));
+                modal.price.textContent = `₱${newPrice}`;
+                stickyFooterPrice.textContent = `₱${newPrice}`;
+
+                if (typeof data.requirements === 'object') {
+                    modal.requirements.panel.innerHTML = data.requirements[selectedVersion];
+                }
+                if (typeof data.installation === 'object') {
+                    modal.installation.panel.innerHTML = data.installation[selectedVersion];
+                }
+                updateAddToCartButtonState();
+            });
+
+            const openModal = (productId, type) => {
+                productModal.dataset.currentProduct = productId;
+                productModal.dataset.productType = type;
+                populateModal(productId, type);
+                productModal.classList.remove('hidden');
+                setTimeout(() => {
+                    productModal.classList.remove('opacity-0');
+                    modal.content.classList.remove('opacity-0', 'scale-95');
+                    document.body.style.overflow = 'hidden';
+                }, 10);
+
+                // Add scroll listener for sticky footer
+                modal.content.addEventListener('scroll', handleModalScroll);
+            };
+
+            const closeModal = () => {
+                stopSlider();
+                modal.content.classList.add('opacity-0', 'scale-95');
+                productModal.classList.add('opacity-0');
+                setTimeout(() => {
+                    productModal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 300);
+
+                // Clean up
+                modal.content.removeEventListener('scroll', handleModalScroll);
+                modalStickyFooter.classList.remove('visible');
+            };
+
+            const handleModalScroll = () => {
+                const priceAndButtonContainer = modal.price.parentElement;
+                const containerPosition = priceAndButtonContainer.getBoundingClientRect();
+                const modalPosition = modal.content.getBoundingClientRect();
+
+                if (containerPosition.bottom < modalPosition.bottom - 80) {
+                    modalStickyFooter.classList.add('visible');
+                } else {
+                    modalStickyFooter.classList.remove('visible');
+                }
+            };
+
+            // --- CART LOGIC ---
+            const updateAddToCartButtonState = () => {
+                const productId = productModal.dataset.currentProduct;
+                if (!productId) return;
+
+                let productVersion = 'Digital Asset';
+                if (productModal.dataset.productType === 'software') {
+                    productVersion = modal.versionSelect.value;
+                }
+
+                const cartId = `${productId}-${productVersion.replace(/\s+/g, '-')}`;
+                const isInCart = cart.some(item => item.cartId === cartId);
+
+                const mainButtonContainer = document.getElementById('add-to-cart-container');
+                const stickyButtonContainer = document.getElementById('sticky-footer-add-to-cart-container');
+
+                if (isInCart) {
+                    mainButtonContainer.innerHTML = `<div class="flex items-center justify-center text-green-400 font-semibold h-full">Added to Cart!</div>`;
+                    stickyButtonContainer.innerHTML = `<div class="flex items-center justify-center text-green-400 font-semibold h-full px-8">Added!</div>`;
+                } else {
+                    mainButtonContainer.innerHTML = `<button id="add-to-cart-btn" class="btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg flex-shrink-0">Add to Cart</button>`;
+                    stickyButtonContainer.innerHTML = `<button id="sticky-footer-add-to-cart-btn" class="btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg flex-shrink-0">Add to Cart</button>`;
+                    
+                    document.getElementById('add-to-cart-btn').addEventListener('click', handleAddToCart);
+                    document.getElementById('sticky-footer-add-to-cart-btn').addEventListener('click', handleAddToCart);
+                }
+            };
+
+            const updateCartIcon = () => {
+                const count = cart.length;
+                const countElements = [
+                    document.getElementById('cart-item-count'),
+                    document.getElementById('cart-item-count-mobile'),
+                    document.getElementById('sticky-footer-cart-count')
+                ];
+                
+                countElements.forEach(el => {
+                    if (el) {
+                        if (count > 0) {
+                            el.textContent = count;
+                            el.classList.remove('hidden');
+                            if (el.id !== 'sticky-footer-cart-count') {
+                                el.classList.add('updated');
+                                setTimeout(() => el.classList.remove('updated'), 200);
+                            }
+                        } else {
+                            el.classList.add('hidden');
+                        }
+                    }
+                });
+            };
+
+            const renderCartItems = () => {
+                cartItemsContainer.innerHTML = '';
+                let totalPrice = 0;
+
+                if (cart.length === 0) {
+                    emptyCartMessage.style.display = 'block';
+                    cartFooter.style.display = 'none';
+                } else {
+                    emptyCartMessage.style.display = 'none';
+                    cartFooter.style.display = 'block';
+
+                    cart.forEach(item => {
+                        const itemEl = document.createElement('div');
+                        itemEl.className = 'flex items-center justify-between py-3 border-b border-slate-800';
+                        itemEl.innerHTML = `
+                            <div class="flex-grow pr-4">
+                                <p class="font-semibold text-white">${item.name}</p>
+                                <p class="text-sm text-slate-400">${item.version}</p>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-semibold text-white w-20 text-right">₱${item.price}</span>
+                                <button data-cart-id="${item.cartId}" class="remove-from-cart-btn ml-4 text-slate-500 hover:text-red-400 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                </button>
+                            </div>
+                        `;
+                        cartItemsContainer.appendChild(itemEl);
+                        totalPrice += item.price;
+                    });
+
+                    // Add remove event listeners
+                    document.querySelectorAll('.remove-from-cart-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const cartId = e.currentTarget.dataset.cartId;
+                            removeFromCart(cartId);
+                        });
+                    });
+                }
+                cartTotalPriceEl.textContent = `₱${totalPrice}`;
+                goToCheckoutBtn.disabled = cart.length === 0;
+            };
+
+            const addToCart = (product) => {
+                const existingItem = cart.find(item => item.cartId === product.cartId);
+                if (!existingItem) {
+                    cart.push(product);
+                }
+                updateCartIcon();
+                renderCartItems();
+            };
+
+            const removeFromCart = (cartId) => {
+                cart = cart.filter(item => item.cartId !== cartId);
+                updateCartIcon();
+                renderCartItems();
+                updateAddToCartButtonState();
+            };
+
+            const handleAddToCart = () => {
+                 const productName = modal.title.textContent;
+                const productPriceRaw = modal.price.textContent;
+                const productPrice = parseFloat(productPriceRaw.replace('₱', ''));
+                const productId = productModal.dataset.currentProduct;
+                let productVersion = 'Digital Asset';
+
+                if(productModal.dataset.productType === 'software') {
+                    productVersion = modal.versionSelect.value;
+                }
+                
+                const cartId = `${productId}-${productVersion.replace(/\s+/g, '-')}`;
+
+                const productDetails = {
+                    cartId: cartId,
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    version: productVersion
+                };
+
+                addToCart(productDetails);
+                
+                updateAddToCartButtonState();
+            };
+
+            const openCartModal = () => {
+                renderCartItems();
+                cartModal.classList.remove('hidden');
+                 setTimeout(() => {
+                    cartModal.classList.remove('opacity-0');
+                    cartContent.classList.remove('opacity-0', 'scale-95');
+                    document.body.style.overflow = 'hidden';
+                }, 10);
+            };
+
+            const closeCartModal = () => {
+                cartContent.classList.add('opacity-0', 'scale-95');
+                cartModal.classList.add('opacity-0');
+                setTimeout(() => {
+                    cartModal.classList.add('hidden');
+                     if (checkoutModal.classList.contains('hidden')) {
+                        document.body.style.overflow = '';
+                    }
+                }, 300);
+            };
+
+            cartButton.addEventListener('click', openCartModal);
+            cartButtonMobile.addEventListener('click', openCartModal);
+            cartCloseBtn.addEventListener('click', closeCartModal);
+            addMoreBtn.addEventListener('click', closeCartModal);
+            checkoutAddMoreBtn.addEventListener('click', () => {
+                closeCheckoutModal();
+                closeCartModal(); // Ensure all modals are closed
+            });
+
+            // --- CHECKOUT LOGIC ---
+            const openCheckoutModal = () => {
+                orderSummaryContainer.innerHTML = '';
+                let totalPrice = 0;
+
+                cart.forEach(item => {
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'flex justify-between text-sm';
+                    itemEl.innerHTML = `
+                        <div>
+                            <p class="font-semibold">${item.name}</p>
+                            <p class="text-xs text-slate-400">${item.version}</p>
+                        </div>
+                        <span>₱${item.price}</span>
+                    `;
+                    orderSummaryContainer.appendChild(itemEl);
+                    totalPrice += item.price;
+                });
+                checkoutTotalPrice.textContent = `₱${totalPrice}`;
+
+                checkoutModal.classList.remove('hidden');
+                setTimeout(() => {
+                    checkoutModal.classList.remove('opacity-0');
+                    checkoutContent.classList.remove('opacity-0', 'scale-95');
+                    document.body.style.overflow = 'hidden';
+                }, 10);
+            };
+
+            const closeCheckoutModal = () => {
+                checkoutContent.classList.add('opacity-0', 'scale-95');
+                checkoutModal.classList.add('opacity-0');
+                setTimeout(() => {
+                    checkoutModal.classList.add('hidden');
+                     if (successModal.classList.contains('hidden')) {
+                       document.body.style.overflow = '';
+                    }
+                }, 300);
+            };
+
+            const openSuccessModal = () => {
+                successModal.classList.remove('hidden');
+                setTimeout(() => {
+                    successModal.classList.remove('opacity-0');
+                }, 10);
+            };
+            
+            const closeSuccessModal = () => {
+                successModal.classList.add('opacity-0');
+                setTimeout(() => {
+                    successModal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 300);
+            };
+
+            goToCheckoutBtn.addEventListener('click', () => {
+                if (cart.length > 0) {
+                    closeCartModal();
+                    setTimeout(() => {
+                       openCheckoutModal();
+                    }, 200);
+                }
+            });
+
+            checkoutCloseBtn.addEventListener('click', closeCheckoutModal);
+            checkoutModal.addEventListener('click', (e) => {
+                if (e.target === checkoutModal) closeCheckoutModal();
+            });
+
+            checkoutForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                processPurchase();
+            });
+            
+            const processPurchase = () => {
+                closeCheckoutModal();
+                setTimeout(() => {
+                    openSuccessModal();
+                    cart = []; // Clear cart after successful purchase
+                    updateCartIcon();
+                }, 300);
+            };
+
+            successCloseBtn.addEventListener('click', closeSuccessModal);
+            successModal.addEventListener('click', (e) => {
+                if (e.target === successModal) closeSuccessModal();
+            });
+
+            // Payment Tab Logic
+            paymentTabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.paymentTab;
+
+                    paymentTabButtons.forEach(btn => btn.classList.remove('active', 'text-slate-400', 'hover:text-white'));
+                    button.classList.add('active');
+                     paymentTabButtons.forEach(btn => {
+                        if(!btn.classList.contains('active')) btn.classList.add('text-slate-400', 'hover:text-white')
+                    });
+
+                    paymentTabPanels.forEach(panel => {
+                        panel.classList.remove('active');
+                        if (panel.id === `${tabId}-panel`) {
+                            panel.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            ewalletOptions.forEach(button => {
+                button.addEventListener('click', () => {
+                    const wallet = button.dataset.wallet;
+                    ewalletOptions.forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+
+                    ewalletInstructionText.textContent = `Please pay the total amount to the Archi+Tech Collections ${wallet.toUpperCase()} account.`;
+                    ewalletInstructions.classList.remove('hidden');
+                });
+            });
+
+            // --- CONTACT SUPPORT LOGIC ---
+            const openContactModal = () => {
+                // Reset form view
+                contactForm.reset();
+                contactFormContainer.classList.remove('hidden');
+                contactSuccessMessage.classList.add('hidden');
+
+                contactModal.classList.remove('hidden');
+                setTimeout(() => {
+                    contactModal.classList.remove('opacity-0');
+                    contactModal.querySelector('.modal-content').classList.remove('opacity-0', 'scale-95');
+                    document.body.style.overflow = 'hidden';
+                }, 10);
+            };
+
+            const closeContactModal = () => {
+                contactModal.querySelector('.modal-content').classList.add('opacity-0', 'scale-95');
+                contactModal.classList.add('opacity-0');
+                setTimeout(() => {
+                    contactModal.classList.add('hidden');
+                    // Check if any other modal is open before resetting body overflow
+                    const isAnotherModalOpen = !productModal.classList.contains('hidden') || !cartModal.classList.contains('hidden') || !checkoutModal.classList.contains('hidden');
+                    if (!isAnotherModalOpen) {
+                        document.body.style.overflow = '';
+                    }
+                }, 300);
+            };
+
+            contactSupportBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openContactModal();
+            });
+            contactCloseBtn.addEventListener('click', closeContactModal);
+            contactSuccessCloseBtn.addEventListener('click', closeContactModal);
+            contactModal.addEventListener('click', (e) => {
+                if (e.target === contactModal) closeContactModal();
+            });
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                contactFormContainer.classList.add('hidden');
+                contactSuccessMessage.classList.remove('hidden');
+            });
+
+            // --- CHATBOT LOGIC ---
+
+            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=`;
+            
+            const systemPrompt = `You are Archie, a friendly and helpful chatbot for a website called "Archi+Tech Collections", which sells digital goods for architects, engineers, and designers.
+
+            Your capabilities:
+            - Answer questions about the products available on the site.
+            - Provide information on pricing, software versions, system requirements, and what's included in 3D model packs.
+            - Explain payment methods and store policies.
+            - Keep your answers concise and easy to read. Use markdown for formatting (e.g., bolding, lists).
+
+            Your limitations:
+            - You cannot process orders or handle personal user data.
+            - You cannot provide external links or navigate the user around the site.
+            - If a user asks something outside your scope, politely decline and suggest they contact support for more complex issues.
+
+            Product Information Context:
+            Software Products: ${JSON.stringify(Object.values(softwareData).map(p => ({name: p.name, description: p.short_desc, price: p.basePrice, versions: p.versions})))}
+            3D Model Categories: ${JSON.stringify(Object.keys(modelsData))}
+            Specific 3D Models: ${JSON.stringify(Object.values(modelsData).flatMap(cat => Object.values(cat.products)).map(p => ({name: p.name, description: p.short_desc, price: p.price})))}
+            Payment Methods: We accept Card (Visa, Mastercard), E-Wallets (GCash, Maya), and Bank Transfers (BPI, UnionBank).
+            Policy: All sales are final. A download link is sent to the user's email upon successful purchase. For any issues, they should contact support.
+            `;
+
+            const toggleChatWindow = (show) => {
+                if (show) {
+                    chatButton.classList.add('open');
+                    chatWindow.classList.remove('hidden');
+                    setTimeout(() => {
+                        chatWindow.classList.remove('opacity-0', 'translate-y-4');
+                    }, 10);
+                } else {
+                    chatButton.classList.remove('open');
+                    chatWindow.classList.add('opacity-0', 'translate-y-4');
+                    setTimeout(() => {
+                        chatWindow.classList.add('hidden');
+                    }, 300);
+                }
+            };
+
+            const addChatMessage = (message, sender) => {
+                // Remove any existing typing indicator
+                const typingIndicator = chatMessagesContainer.querySelector('.typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+
+                const messageWrapper = document.createElement('div');
+                messageWrapper.className = `chat-message ${sender === 'user' ? 'self-end' : 'self-start'}`;
+
+                const messageBubble = document.createElement('div');
+                messageBubble.className = `rounded-lg p-3 ${sender === 'user' ? 'bg-blue-500' : 'bg-slate-800'}`;
+                
+                const messageText = document.createElement('p');
+                messageText.className = 'text-sm text-white';
+
+                // Basic markdown to HTML conversion
+                let formattedMessage = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
+                formattedMessage = formattedMessage.replace(/\*(.*?)\*/g, '<em>$1</em>');       // Italics
+                formattedMessage = formattedMessage.replace(/^- (.*)/gm, '<li>$1</li>');     // List items
+                formattedMessage = formattedMessage.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>'); // Wrap lists
+                
+                messageText.innerHTML = formattedMessage;
+
+
+                messageBubble.appendChild(messageText);
+                messageWrapper.appendChild(messageBubble);
+                chatMessagesContainer.appendChild(messageWrapper);
+                chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+            };
+
+             const showTypingIndicator = () => {
+                const typingEl = document.createElement('div');
+                typingEl.className = 'chat-message self-start typing-indicator';
+                typingEl.innerHTML = `
+                    <div class="bg-slate-800 rounded-lg p-3">
+                        <p class="text-sm text-white italic">Archie is typing...</p>
+                    </div>
+                `;
+                chatMessagesContainer.appendChild(typingEl);
+                chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+            };
+
+            const getBotResponse = async (userMessage) => {
+                 showTypingIndicator();
+                 try {
+                     const payload = {
+                         contents: [{
+                             parts: [{ text: userMessage }]
+                         }],
+                         systemInstruction: {
+                             parts: [{ text: systemPrompt }]
+                         },
+                     };
+
+                     const response = await fetch(API_URL, {
+                         method: 'POST',
+                         headers: { 'Content-Type': 'application/json' },
+                         body: JSON.stringify(payload)
+                     });
+
+                     if (!response.ok) {
+                         throw new Error(`API request failed with status ${response.status}`);
+                     }
+
+                     const result = await response.json();
+                     const botMessage = result.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that. Please try again.";
+                     addChatMessage(botMessage, 'bot');
+
+                 } catch (error) {
+                     console.error('Error fetching bot response:', error);
+                     addChatMessage("Sorry, I'm having trouble connecting right now. Please contact support directly.", 'bot');
+                 }
+            };
+
+
+            chatButton.addEventListener('click', () => {
+                const isChatOpen = chatButton.classList.contains('open');
+                toggleChatWindow(!isChatOpen);
+            });
+            chatCloseBtn.addEventListener('click', () => toggleChatWindow(false));
+
+            chatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const userMessage = chatInput.value.trim();
+                if (userMessage) {
+                    addChatMessage(userMessage, 'user');
+                    chatInput.value = '';
+                    getBotResponse(userMessage);
+                }
+            });
+
+
+            function addCardClickListeners() {
+                document.querySelectorAll('.card-glow[data-product-id]').forEach(card => {
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', (e) => {
+                        if (e.target.closest('button')) return;
+                        const productId = card.dataset.productId;
+                        const productType = card.dataset.productType;
+                        if (productId && productType) {
+                            openModal(productId, productType);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.card-glow[data-category-name]').forEach(card => {
+                     card.addEventListener('click', (e) => {
+                         const categoryName = card.dataset.categoryName;
+                         showModelProducts(categoryName);
+                     });
+                });
+            }
+            
+            closeModalBtn.addEventListener('click', closeModal);
+            productModal.addEventListener('click', (e) => {
+                if (e.target === productModal) closeModal();
+            });
+
+            // Modal Tabs functionality
+            const modalTabButtons = document.querySelectorAll('.modal-tab-button');
+            modalTabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.modalTab;
+                    modalTabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    document.querySelectorAll('.modal-tab-panel').forEach(panel => {
+                        panel.classList.remove('active');
+                        if (panel.id === `modal-${tabId}-panel`) {
+                           panel.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // --- INITIALIZE ---
+            renderSoftwareCards();
+            renderModelCategories();
+            addCardClickListeners();
+        });
+    </script>
+</body>
+</html>
+
+
+
